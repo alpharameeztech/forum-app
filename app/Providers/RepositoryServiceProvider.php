@@ -56,6 +56,11 @@ class RepositoryServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            BrandingRepositoryInterface::class,
+            BrandingRepository::class
+        );
+
+        $this->app->bind(
             ThemeSettingRepositoryInterface::class,
             ThemeSettingRepository::class
         );
