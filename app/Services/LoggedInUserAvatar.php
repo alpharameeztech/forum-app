@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tasks;
+namespace App\Services;
 
 use Illuminate\Support\Facades\Auth;
 use App\UserTrainingHistory;
