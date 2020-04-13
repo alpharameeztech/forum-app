@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\Tasks\Users;
+use App\Services\Users;
 use Illuminate\Support\Facades\Hash;
 /*
 |--------------------------------------------------------------------------
@@ -156,7 +156,7 @@ Route::group([
         return \App\Services\Stats\Threads::noReplies();
     });
     Route::get('/trending/threads', function(){
-        $trending_thread = new \App\Tasks\Forum\TrendingThreads;
+        $trending_thread = new \App\Services\Forum\TrendingThreads;
         return $trending_thread();
     });
     Route::get('/recent/thread', function(){
