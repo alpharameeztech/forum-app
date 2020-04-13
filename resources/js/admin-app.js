@@ -6,6 +6,10 @@ import Vuelidate from 'vuelidate'
 import '@mdi/font/css/materialdesignicons.css'
 import ReadMore from 'vue-read-more';
 import VueFusionCharts from 'vue-fusioncharts';
+import FusionCharts from 'fusioncharts';
+import Charts from 'fusioncharts/fusioncharts.charts';
+import TimeSeries from 'fusioncharts/fusioncharts.timeseries';
+import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion'
 Vue.use(VueRouter)
 Vue.use(Vuetify);
 Vue.use(Vuelidate)
