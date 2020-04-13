@@ -83,6 +83,13 @@ Vue.component(
     'search',
     require('./components/SearchComponent').default);
 
+//register the event listener
+window.events = new Vue();
+
+window.flash = function(message, type = 'success') {
+    window.events.$emit('flash', {message, type} );
+}
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
