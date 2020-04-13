@@ -25,14 +25,6 @@ class ForumReply extends Model
 
         parent::boot();
 
-        /*
-         * The "booting" method of the model.
-         * Global Query scope
-         *Adding the constraint of the shop id
-         * @return void
-         */
-        static::addGlobalScope(new ShopScope);
-
         static::created(function ($reply){
 
             $reply->thread->increment('replies_count');
