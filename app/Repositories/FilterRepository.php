@@ -1,18 +1,14 @@
 <?php
 
-namespace App\Repository\Forum\Threads;
+namespace App\Repositories;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\UserTrainingHistory;
 use App\Product;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\DB;
 use App\SubscriptionRepository\UserSubscriptions;
 use App\Question;
 use App\User;
 
-class Filter
+class FilterRepository
 {
     public static function apply($threads)
     {

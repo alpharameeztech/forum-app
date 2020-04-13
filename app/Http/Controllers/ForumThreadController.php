@@ -8,7 +8,7 @@ use App\ForumThread;
 use Illuminate\Support\Facades\Auth;
 use App\ForumChannel;
 use App\User;
-use App\Repository\Forum\Threads\Filter;
+use App\Repositories\FilterRepository;
 use App\Inspections\Spam;
 use App\Services\TrendingThreads;
 use Illuminate\Support\Facades\Cache;
@@ -39,7 +39,7 @@ class ForumThreadController extends Controller
             $threads_builder_query = ForumThread::where('is_ban',0)->latest();
         }
 
-        $threads = Filter::apply($threads_builder_query);
+        $threads = FilterRepository::apply($threads_builder_query);
 
         return view('forum.threads.index',[
             'threads' => $threads,
