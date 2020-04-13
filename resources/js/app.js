@@ -75,6 +75,10 @@ Vue.component(
     'loading-component',
     require('./components/admin/forum/Loader').default);
 
+Vue.component(
+    'flashing-component',
+    require('./components/admin/FlashComponent').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
