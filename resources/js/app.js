@@ -99,7 +99,25 @@ window.flash = function(message, type = 'success') {
 const app = new Vue({
     el: '#app',
     data:{
+        //======================== this data refers to Forum data
+        //for details visit: https://vuejs.org/v2/guide/reactivity.html#Declaring-Reactive-Properties
+        // declare message with an empty value
+        primaryButtonOverrideStyles: {
+            backgroundColor: ''
+        },
 
+        linkOverrideStyles:{
+            color: ''
+        },
+
+        headingOverrideStyles: {
+            color: ''
+        },
+
+        paragraphOverrideStyles: {
+            color: ''
+        },
+        value: ''
     },
     vuetify: new Vuetify({
         icons: {
