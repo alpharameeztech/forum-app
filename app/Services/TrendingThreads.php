@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Tasks\Forum;
+namespace App\Services;
 
 use App\ForumThread;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redis;
 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\ForumActivity;
-use App\Services\Forum\TrendingThreads;
+use App\Services\TrendingThreads;
 
 class ForumProfileController extends Controller
 {
