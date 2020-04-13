@@ -51,6 +51,10 @@ Vue.component(
     'wysiwyg-component',
     require('./components/Wysiwyg.vue').default);
 
+Vue.component(
+    'wysiwyg-multiple-component',
+    require('./components/WysiwygMultiple.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
