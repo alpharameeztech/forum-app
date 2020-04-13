@@ -4,9 +4,11 @@ import Vuetify from 'vuetify'
 import VueRouter from 'vue-router'
 import Vuelidate from 'vuelidate'
 import '@mdi/font/css/materialdesignicons.css'
+import ReadMore from 'vue-read-more';
 Vue.use(VueRouter)
 Vue.use(Vuetify);
 Vue.use(Vuelidate)
+Vue.use(ReadMore);
 
 window.events = new Vue();
 
