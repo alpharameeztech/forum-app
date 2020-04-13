@@ -10,7 +10,7 @@ use App\ForumChannel;
 use App\User;
 use App\Repository\Forum\Threads\Filter;
 use App\Inspections\Spam;
-use App\Services\Forum\TrendingThreads;
+use App\Services\TrendingThreads;
 use Illuminate\Support\Facades\Cache;
 use Zttp\Zttp;
 

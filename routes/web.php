@@ -156,7 +156,7 @@ Route::group([
         return \App\Services\Stats\Threads::noReplies();
     });
     Route::get('/trending/threads', function(){
-        $trending_thread = new \App\Services\Forum\TrendingThreads;
+        $trending_thread = new \App\Services\TrendingThreads;
         return $trending_thread();
     });
     Route::get('/recent/thread', function(){
