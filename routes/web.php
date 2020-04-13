@@ -87,7 +87,7 @@ Route::get('forum/threads/{channel}', 'ForumThreadController@index');
 //post a thread
 Route::post('forum/threads', 'ForumThreadController@store')->middleware('auth');
 
-//showcase a spefici channel thread
+//showcase a specific channel thread
 //showcase all the channel's thread
 Route::get('forum/threads/{channel}/{thread}', 'ForumThreadController@show');
 
@@ -123,41 +123,6 @@ Route::get('api/users/list', function(){
 Route::post('/upload/user/avatar', 'UserController@store')->middleware('auth');
 
 //========================== Forum Ended ========================================
-
-// ============================= shopify ===========================================
-Route::prefix('/shopify')->middleware('odin')->group(function () {
-    // ----- entry point for app
-    Route::get('/', [
-        'as'    => 'shopify.landing-page',
-        'uses'  => 'ShopifyController@access'
-    ])->middleware('payment')->middleware('hades');
-
-    // ----- auth callback
-    Route::get('auth-callback', [
-        'as' => 'shopify.auth-callback',
-        'uses' => 'ShopifyController@authCallback'
-    ])->middleware('payment');
-
-    // ----- uninstall hook callback
-    Route::post('hooks/uninstall', [
-        'as' => 'shopify.hooks-uninstall',
-        'uses'  => 'ShopifyController@uninstall'
-    ]);
-
-    Route::get('/proxy', [
-        'as' => 'shopify.proxy',
-        'uses'  => 'ShopifyController@proxy'
-    ]);
-});
-
-// ----- payment confirmation
-Route::get('/shopify/charge-callback', [
-    'as' => 'shopify.charge-callback',
-    'uses' => 'ShopifyController@chargeCallback'
-])->middleware('payment');
-
-
-// ============================= shopify ended ===========================================
 
 // ================================ admin & publisher ===================================================
 
@@ -236,8 +201,8 @@ Route::group([
     Route::patch('/theme/settings', 'ForumThemeSettingController@update');
 
 
-    Route::patch('/shop/appearance', 'ForumAppearanceController@update');
-    Route::post('/shop/appearance', 'ForumAppearanceController@store');
+    Route::patch('/appearance', 'ForumAppearanceController@update');
+    Route::post('/appearance', 'ForumAppearanceController@store');
 
     Route::get('/account/details', function(){
         return \App\Repository\Forum\UserAccount::get();
@@ -267,5 +232,5 @@ Route::group([
 });
 // ================================ admin ended ===================================================
 
-Route::get('/api/shop/appearance', 'Admin\ForumAppearanceController@show')->name('shopAppearance');
+Route::get('/api/appearance', 'Admin\ForumAppearanceController@show')->name('shopAppearance');
 
