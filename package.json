@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "@mdi/font": "^5.0.45",
+        "trix": "^1.2.3",
         "vuetify": "^2.2.21"
     }
 }

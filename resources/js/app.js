@@ -47,6 +47,9 @@ Vue.component(
     'user-notification-component',
     require('./components/UserNotificationComponent.vue').default);
 
+Vue.component(
+    'wysiwyg-component',
+    require('./components/Wysiwyg.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
