@@ -2,8 +2,10 @@ require('./bootstrap');
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import VueRouter from 'vue-router'
+import Vuelidate from 'vuelidate'
 Vue.use(VueRouter)
 Vue.use(Vuetify);
+Vue.use(Vuelidate)
 
 window.events = new Vue();
 

@@ -27,6 +27,7 @@
         "@mdi/font": "^5.0.45",
         "trix": "^1.2.3",
         "vue-router": "^3.1.6",
+        "vuelidate": "^0.7.5",
         "vuetify": "^2.2.21"
     }
 }
