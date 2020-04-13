@@ -63,6 +63,10 @@ Vue.component(
     'left-navigation',
     require('./components/navigation/LeftNavigation').default);
 
+Vue.component(
+    'right-navigation',
+    require('./components/navigation/RightNavigation').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
