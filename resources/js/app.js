@@ -79,6 +79,10 @@ Vue.component(
     'flashing-component',
     require('./components/admin/FlashComponent').default);
 
+Vue.component(
+    'search',
+    require('./components/SearchComponent').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
