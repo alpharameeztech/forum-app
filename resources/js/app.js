@@ -31,6 +31,10 @@ Vue.component(
     'replies-component',
     require('./components/RepliesComponent.vue').default);
 
+Vue.component(
+    'subscribe-thread-component',
+    require('./components/ThreadSubscribeComponenet.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
