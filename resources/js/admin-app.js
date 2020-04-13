@@ -21,6 +21,13 @@ window.events = new Vue();
 window.flash = function(message, type = 'success') {
     window.events.$emit('flash', {message, type} );
 }
+Vue.component(
+    'flash-component',
+    require('./components/admin/FlashComponent.vue').default);
+
+Vue.component(
+    'loader-component',
+    require('./components/admin/forum/Loader.vue').default);
 new Vue({
     el: '#app',
     vuetify: new Vuetify({
