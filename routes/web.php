@@ -31,7 +31,7 @@ use Illuminate\Support\Facades\Hash;
 // });
 
 // \URL::forceScheme('https');
-URL::forceRootUrl(env('APP_URL'));
+//URL::forceRootUrl(env('APP_URL'));
 
 Route::get('/', [
     'as'    => 'forum.home',
