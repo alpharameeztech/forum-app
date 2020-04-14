@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Services\CustomSlug;
+use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use App\ForumThread;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\ForumChannel;
 use App\Services\SiteAppearance;
@@ -32,7 +35,7 @@ class ForumThreadController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index(ForumChannel $channel,  TrendingThreads $trendingThreads) //or $channelSlug = null
     {
@@ -56,7 +59,8 @@ class ForumThreadController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param TrendingThreads $trendingThreads
+     * @return Response
      */
     public function create(TrendingThreads $trendingThreads)
     {
@@ -69,28 +73,13 @@ class ForumThreadController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
+     * @throws Exception
      */
     public function store(Request $request)
     {
 
-        // //first make sure that captcha response is valid
-        // $response  = Zttp::asFormParams()->post('https://www.google.com/recaptcha/api/siteverify',[
-        //     'secret' => config('services.recaptcha.secret'),
-        //     'response' => $request->input('g-recaptcha-response'),
-        //     'remoteip' => $_SERVER['REMOTE_ADDR']
-        // ]);
-
-        // $response_body = json_decode($response->getBody(), true);
-
-        // \Log::info(get_class($this));
-        // \Log::info($response_body);
-
-        // if($response_body['success'] == false){ // redirect and abort
-        //     return redirect('forum/threads/create')
-        //     ->with('flash-message','Sorry! Your thread is not posted. Captcha is required');
-        // }
 
         $this->validateRequest();
 
@@ -115,7 +104,7 @@ class ForumThreadController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($channelId, ForumThread $thread, TrendingThreads $trendingThreads)
     {
@@ -144,8 +133,8 @@ class ForumThreadController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return void
      */
     public function edit($id)
     {
@@ -155,9 +144,10 @@ class ForumThreadController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $channel
+     * @param ForumThread $thread
+     * @return int
+     * @throws AuthorizationException
      */
     public function update($channel, ForumThread $thread)
     {
@@ -180,8 +170,10 @@ class ForumThreadController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $channel
+     * @param ForumThread $thread
+     * @return Response
+     * @throws AuthorizationException
      */
     public function destroy($channel, ForumThread $thread)
     {

@@ -38,7 +38,7 @@
                 <div class="col-sm-2 newDiscussionDiv">
                     <div class="container">
                         <div class="row">
-                            <a v-bind:style="[primaryButtonOverrideStyles]" class="newDiscussionCta btn btn-primary" href="{{ route('new.discussion') }}" role="button">New Discussion</a>
+                            <a v-bind:style="[primaryButtonOverrideStyles]" class="newDiscussionCta btn btn-primary" href="/forum/threads/create" role="button">New Discussion</a>
                         </div>
                     </div>
                 </div>

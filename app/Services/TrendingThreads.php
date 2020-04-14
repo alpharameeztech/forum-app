@@ -20,29 +20,29 @@ class TrendingThreads {
 
     public function get(){ // get the user's subcribed products
 
-      //$tending_threads = Redis::zrevrange('trending_threads', 0, -1);
+        //$tending_threads = Redis::zrevrange('trending_threads', 0, -1);
 
-      $data = array_map('json_decode', Redis::zrevrange($this->cacheKey(), 0, 9)); // get the 10 trending threads
+        $data = array_map('json_decode', Redis::zrevrange($this->cacheKey(), 0, 9)); // get the 10 trending threads
 
         foreach($data as $key => $value)  {
 
-               if( empty($value->shop_id) || !empty( $value->shop_id) && $value->shop_id != Cache::get('shop_id')  )
-               {
+            if( empty($value->shop_id) || !empty( $value->shop_id) && $value->shop_id != Cache::get('shop_id')  )
+            {
 
-                   unset($data[$key]);
-               }else
-                   {
+                unset($data[$key]);
+            }else
+            {
 
-                       $thread  = ForumThread::where('title', $value->title)->first();
+                $thread  = ForumThread::where('title', $value->title)->first();
 
-                       if(!empty($thread))
-                       {
+                if(!empty($thread))
+                {
 
-                           $data[$key]->visits = $thread->visits()->count();
+                    $data[$key]->visits = $thread->visits()->count();
 
-                           $data[$key]->totalReplies = $thread->replies_count;
-                       }
-               }
+                    $data[$key]->totalReplies = $thread->replies_count;
+                }
+            }
         }
 
         $data = collect($data);
@@ -58,7 +58,6 @@ class TrendingThreads {
     public function push($thread){
 
         Redis::zincrby($this->cacheKey(),1, json_encode([
-            'shop_id' => Cache::get('shop_id'),
             'id' => $thread->id,
             'name' => config('app.name'),
             'title' => $thread->title,
