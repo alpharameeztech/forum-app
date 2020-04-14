@@ -22,7 +22,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
-    {!! $themeCssCode !!}
+    {!! $siteCssCode !!}
 
     <link rel="stylesheet" href="{{ mix('/css/vuetify.css') }}">
 
@@ -30,7 +30,7 @@
 
 
 <body>
-    <div id="app" class="{{  $themeCssClass }}">
+    <div id="app" class="{{  $siteCssClass }}">
 
         <main class="py-4">
 
@@ -245,7 +245,7 @@
 
     </script>
 
-    {!! $themeJsCode !!}
+    {!! $siteJsCode !!}
 
 </body>
 </html>

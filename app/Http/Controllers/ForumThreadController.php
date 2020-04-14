@@ -7,15 +7,28 @@ use Illuminate\Http\Request;
 use App\ForumThread;
 use Illuminate\Support\Facades\Auth;
 use App\ForumChannel;
-use App\User;
+use App\Services\SiteAppearance;
 use App\Repositories\FilterRepository;
 use App\Inspections\Spam;
 use App\Services\TrendingThreads;
 use Illuminate\Support\Facades\Cache;
 use Zttp\Zttp;
+use App\Repositories\ChannelRepository;
 
 class ForumThreadController extends Controller
 {
+    protected $channelRepository;
+
+    public function __construct(ChannelRepository $channelRepository)
+    {
+        $this->channelRepository = $channelRepository;
+        view()->share('channels', $this->channelRepository->all());
+        view()->share('siteCssClass', SiteAppearance::filter('css_class'));
+        view()->share('siteBanner', SiteAppearance::filter('banner'));
+        view()->share('siteCssCode', SiteAppearance::filter('css_code'));
+        view()->share('siteJsCode', SiteAppearance::filter('js_code'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,14 +36,6 @@ class ForumThreadController extends Controller
      */
     public function index(ForumChannel $channel,  TrendingThreads $trendingThreads) //or $channelSlug = null
     {
-        // if($channelSlug){
-
-        //     $channelId = ForumChannel::where('slug',$channelSlug)->first()->id;
-
-        //     $threads = ForumThread::where('forum_channel_id',$channelId)->latest()->get();
-
-
-        // }
 
         if($channel->exists){ // if the channel is valid model on forumChannel
             $threads_builder_query = $channel->threads()->latest()->where('is_ban',0);
