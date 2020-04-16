@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\ForumReply;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use App\ForumThread;
 use App\Inspections\Spam;
 use App\Notifications\YouWereMentioned;
 use App\User;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
 
 class ForumReplyController extends Controller
@@ -20,7 +22,7 @@ class ForumReplyController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index($channelId, ForumThread $thread)
     {
@@ -31,7 +33,7 @@ class ForumReplyController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -42,7 +44,7 @@ class ForumReplyController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store($channelId, ForumThread $thread,Request $request)
     {
@@ -53,7 +55,6 @@ class ForumReplyController extends Controller
             $this->validateRequest();
 
             $reply = $thread->addReply([
-                'shop_id' => Cache::get('shop_id'),
                 'body' => request('body'),
                 'user_id' => auth()->id()
             ]);
@@ -80,8 +81,8 @@ class ForumReplyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ForumReply  $forumReply
-     * @return \Illuminate\Http\Response
+     * @param ForumReply $forumReply
+     * @return Response
      */
     public function show(ForumReply $forumReply)
     {
@@ -91,8 +92,8 @@ class ForumReplyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ForumReply  $forumReply
-     * @return \Illuminate\Http\Response
+     * @param ForumReply $forumReply
+     * @return Response
      */
     public function edit(ForumReply $forumReply)
     {
@@ -103,8 +104,8 @@ class ForumReplyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ForumReply  $forumReply
-     * @return \Illuminate\Http\Response
+     * @param ForumReply $forumReply
+     * @return Response
      */
     public function update(Request $request, $forumReply)
     {
@@ -130,8 +131,9 @@ class ForumReplyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ForumReply  $forumReply
-     * @return \Illuminate\Http\Response
+     * @param ForumReply $forumReply
+     * @return Response
+     * @throws AuthorizationException
      */
     public function destroy($forumReply)
     {
@@ -154,19 +156,6 @@ class ForumReplyController extends Controller
     }
 
     protected function validateRequest(){
-
-         // try {
-
-        //     if(Gate::denies('create', new ForumReply) ){
-
-        //         return response('You are posting too erarly. Please take a break.',422);
-
-        //     }
-        // } catch (\Throwable $th) {
-        //     //throw $th;
-        // }
-
-       // $this->authorize('create', new ForumReply);
 
         $this->validate(request(), [
             'body' => 'required'
