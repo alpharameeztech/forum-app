@@ -9,6 +9,7 @@ import '@mdi/font/css/materialdesignicons.css'
 require('./bootstrap');
 
 window.Vue = require('vue');
+Vue.use(Vuetify);
 
 /**
  * The following block of code may be used to automatically register your
