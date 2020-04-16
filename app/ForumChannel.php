@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Scopes\ShopScope;
 use Illuminate\Database\Eloquent\Model;
 
 class ForumChannel extends Model

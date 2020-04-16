@@ -84,7 +84,6 @@ class ForumThreadController extends Controller
         $this->validateRequest();
 
         $thread = ForumThread::create([
-            'shop_id' => Cache::get('shop_id'),
             'user_id' => Auth::id(),
             'forum_channel_id' => request('channel'),
             'is_ban' => 0, // allow by default
