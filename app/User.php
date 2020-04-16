@@ -6,8 +6,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\ForumActivity;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Cache;
-use App\Scopes\ShopScope;
 
 class User extends Authenticatable
 {
