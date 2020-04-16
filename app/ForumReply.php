@@ -65,7 +65,6 @@ class ForumReply extends Model
         //if the no record found for the sma user id  for the sam reply then make it favorite
         if(!$this->favorites()->where(['user_id' => $user_id ])->exists() ){
             $this->favorites()->create([
-                'shop_id' => Cache::get('shop_id'),
                 'user_id' => $user_id
             ]);
         }

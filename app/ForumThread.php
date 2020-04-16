@@ -82,7 +82,6 @@ class ForumThread extends Model
     public function subscribe(){
 
         $this->subscriptions()->create([
-            'shop_id' => Cache::get('shop_id'),
             'user_id' => Auth::id()
 
         ]);
